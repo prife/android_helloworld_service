@@ -28,12 +28,4 @@ status_t HelloWorldService::helloworld(const char*str)
     return NO_ERROR;
 }
 
-status_t HelloWorldService::onTransact(uint32_t code,
-                                       const Parcel& data,
-                                       Parcel* reply,
-                                       uint32_t flags)
-{
-    return BnHelloWorldService::onTransact(code, data, reply, flags);
-}
-
 }; //namespace android
