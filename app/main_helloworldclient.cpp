@@ -12,9 +12,10 @@ int main(int argc, char *argv[])
     using namespace android;
 	ALOGE("Hello client is now starting");
 
+    sp<IHelloWorldService> shw;
+#if 0
     sp<IServiceManager> sm = defaultServiceManager();
     sp<IBinder> binder;
-    sp<IHelloWorldService> shw;
 
     do {
         binder = sm->getService(String16("helloworld"));
@@ -35,6 +36,13 @@ int main(int argc, char *argv[])
 	ALOGE("Hello client is now trying");
 
     shw = interface_cast<IHelloWorldService>(binder);
+#else
+    if (getService<IHelloWorldService>("helloworld", &shw) == NAME_NOT_FOUND)
+    {
+        ALOGE("cann't found remote service server!");
+        return -1;
+    }
+#endif
     shw->helloworld("hello, world");
 
 	ALOGE("Hello client is now exiting");
