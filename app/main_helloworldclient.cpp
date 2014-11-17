@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     shw = interface_cast<IHelloWorldService>(binder);
 #else
-    if (getService<IHelloWorldService>("helloworld", &shw) == NAME_NOT_FOUND)
+    if (getService<IHelloWorldService>(String16("helloworld"), &shw) == NAME_NOT_FOUND)
     {
         ALOGE("cann't found remote service server!");
         return -1;
